@@ -6,7 +6,8 @@ TARGET = mere-log
 TEMPLATE = app 
 
 SOURCES += \
-HEADERS += \
+HEADERS += \ \
+    main.cpp
 
 #
 # Install
