@@ -1,13 +1,14 @@
 include(../mere-log-lib/mere-log-lib.pri)
 
-QT += core
+QT = core
 
 TARGET = mere-log
 TEMPLATE = app 
 
 SOURCES += \
-HEADERS += \ \
     main.cpp
+
+HEADERS += \
 
 #
 # Install
