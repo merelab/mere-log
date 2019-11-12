@@ -12,19 +12,53 @@ DEFINES += LIB_NAME=\\\"$$TARGET\\\"
 DEFINES += LIB_VERSION=\\\"$$VERSION\\\"
 DEFINES += QT_DEPRECATED_WARNINGS MERE_LOG_LIB
 
-CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
+#CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
 
 SOURCES += \
+    src/filter/merelogseverityfilter.cpp \
+    src/handler/merelogdefaulthandler.cpp \
+    src/handler/merelogfilehandler.cpp \
+    src/handler/mereloghandler.cpp \
+    src/handler/merelogsysloghandler.cpp \
+    src/meredefaultlogger.cpp \
+    src/merefilelogger.cpp \
     src/merelog.cpp \
     src/merelogconfig.cpp \
+    src/merelogcontext.cpp \
+    src/merelogfactory.cpp \
+    src/filter/merelogfilter.cpp \
+    src/filter/merelogdefaultfilter.cpp \
+    src/format/merelogformatter.cpp \
+    src/format/merelogdefaultformatter.cpp \
     src/merelogger.cpp \
+    src/processor/merelogapplicationprocessor.cpp \
+    src/processor/mereloghostnameprocessor.cpp \
+    src/processor/merelogprocessor.cpp \
+    src/processor/merelogdefaultprocessor.cpp \
     src/mereloglevel.cpp
 
 HEADERS += \
+    src/filter/merelogseverityfilter.h \
+    src/handler/merelogdefaulthandler.h \
+    src/handler/merelogfilehandler.h \
+    src/handler/mereloghandler.h \
+    src/handler/merelogsysloghandler.h \
+    src/meredefaultlogger.h \
+    src/merefilelogger.h \
     src/merelog.h \
     src/merelogconfig.h \
+    src/merelogcontext.h \
+    src/filter/merelogdefaultfilter.h \
+    src/format/merelogdefaultformatter.h \
+    src/merelogfactory.h \
+    src/filter/merelogfilter.h \
+    src/format/merelogformatter.h \
     src/merelogger.h \
     src/merelogglobal.h \
+    src/processor/merelogapplicationprocessor.h \
+    src/processor/mereloghostnameprocessor.h \
+    src/processor/merelogprocessor.h \
+    src/processor/merelogdefaultprocessor.h \
     src/mereloglevel.h
 
 DESTDIR = $$PWD/../lib
