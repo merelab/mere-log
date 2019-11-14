@@ -1,16 +1,18 @@
 #ifndef MERELOGFACTORY_H
 #define MERELOGFACTORY_H
 
-#include "merelogglobal.h"
 #include "merelogger.h"
 
-class MERE_LOG_LIBSPEC MereLogFactory
-{
-public:
-    static MereLogger* logger();
+#include <QObject>
 
+class MERE_LOG_LIBSPEC MereLogFactory : public QObject
+{
+    Q_OBJECT
 private:
     MereLogFactory(){}
+
+public:
+    static MereLogger* logger();
 };
 
 #endif // MERELOGFACTORY_H

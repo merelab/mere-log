@@ -1,11 +1,18 @@
 #include "merelog.h"
 
+MereLog::~MereLog()
+{
+
+}
+
 MereLog::MereLog(Severity severity, QString message)
     : m_uuid(QUuid::createUuid()),
       m_when(QDateTime::currentDateTime()),
       m_what(severity),
       m_note(message)
 {
+    qRegisterMetaType<MereLog::Severity>("MereLog::Severity");
+
     set("uuid"     , m_uuid);
     set("when"     , m_when);
     set("what"     , m_what);

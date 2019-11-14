@@ -6,8 +6,6 @@
 class MereLogApplicationProcessor : public MereLogProcessor
 {
 public:
-    MereLogApplicationProcessor();
-
     static QString Field;
     QString field() const;
 

@@ -3,11 +3,6 @@
 #include <QCoreApplication>
 
 QString MereLogApplicationProcessor::Field = "application";
-MereLogApplicationProcessor::MereLogApplicationProcessor()
-{
-
-}
-
 QString MereLogApplicationProcessor::field() const
 {
     return MereLogApplicationProcessor::Field;
@@ -21,4 +16,3 @@ bool MereLogApplicationProcessor::process(MereLog *log)
 
     return true;
 }
-\

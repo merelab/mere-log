@@ -1,8 +1,9 @@
 #include "merelogsysloghandler.h"
-#include "../format/merelogdefaultformatter.h"
+#include "../format/merelogsyslogformatter.h"
 
-MereLogSyslogHandler::MereLogSyslogHandler(MereLogConfig *config)
-    : MereLogHandler(config)
+#include <QThread>
+MereLogSyslogHandler::MereLogSyslogHandler(MereLogConfig *config, QObject *parent)
+    : MereLogHandler(config, parent)
 {
 
 }
@@ -13,10 +14,20 @@ bool MereLogSyslogHandler::handle(MereLog *log)
 
     QString format = "${uuid} ${severity} ${timestamp} ${hostname} ${application} ${message}";
 
-    MereLogDefaultFormatter fomatter(m_config);
+    MereLogSyslogFormatter fomatter(m_config);
 
     qDebug() << "1..." << format;
     qDebug() << "2..." << fomatter.format(log);
+    qDebug() << "CCCThread:" << QThread::currentThreadId();
+
+    setlogmask (LOG_UPTO (LOG_DEBUG));
+
+    openlog ("mere-about", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
+
+//    syslog (LOG_NOTICE, "Program started by User %d", "iklash");
+    syslog (LOG_DEBUG, "A tree falls in a forest");
+
+    closelog ();
 
     return true;
 }

@@ -2,7 +2,6 @@
 #define MERELOG_H
 
 #include "merelogglobal.h"
-#include "merelogcontext.h"
 
 #include <QDateTime>
 #include <QUuid>
@@ -23,14 +22,16 @@ public:
         Informational   = 1 << 6,
         Debug           = 1 << 7,
         All             = 0b11111111
-    };
+    } ;
+    //Q_ENUM(Severity)
 
+    ~MereLog();
     MereLog(Severity severity, QString message);
 
-    QUuid uuid() const;
+    QUuid     uuid() const;
     QDateTime when() const;
-    Severity what() const;
-    QString note() const;
+    Severity  what() const;
+    QString   note() const;
 
     QVariant get(const QString &field) const;
     void set(const QString &field, const QVariant &value);
@@ -41,9 +42,7 @@ private:
     Severity  m_what;
     QString   m_note;
 
-    MereLogContext m_context;
-
     QMap<QString, QVariant> m_fields;
 };
-
+Q_DECLARE_METATYPE(MereLog::Severity)
 #endif // MERELOG_H

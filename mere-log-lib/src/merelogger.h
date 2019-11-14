@@ -1,17 +1,20 @@
 #ifndef MERELOGGER_H
 #define MERELOGGER_H
 
-#include "merelogglobal.h"
 #include "merelog.h"
 #include "merelogconfig.h"
+#include "merelogcooker.h"
+#include "merelog.h"
 
-#include <QList>
+#include <QThread>
+#include <QObject>
 
-class MERE_LOG_LIBSPEC MereLogger
+class MERE_LOG_LIBSPEC MereLogger : public QObject
 {
+    Q_OBJECT
 public:
-//    virtual ~MereLogger();
-    explicit MereLogger(MereLogConfig *config);
+    virtual ~MereLogger();
+    explicit MereLogger(MereLogConfig *config, QObject *parent = nullptr);
 
     virtual bool emergency(const QString &message) = 0;
     virtual bool alert(const QString &message) = 0;
@@ -21,20 +24,20 @@ public:
     virtual bool notice(const QString &message) = 0;
     virtual bool info(const QString &message) = 0;
     virtual bool debug(const QString &message) = 0;
-//    virtual bool trace(const QString &message) = 0;
-
-    virtual bool log(const QString &message){ return info(message); }
 
 protected:
-    virtual bool log(MereLog *log) = 0;
     MereLogConfig *config() const;
+
+signals:
+    bool log(const QString &message);
+    bool log(MereLog::Severity severity, const QString &message);
+    bool log(MereLog *log);
 
 private:
     MereLogConfig *m_config;
 
-//    MereLog *m_log;
-//    QList<MereLogFilter *> m_filters;
-//    QList<MereLogProcessor *> m_handlers;
+    QThread *m_thread;
+    MereLogCooker *m_cooker;
 };
 
 #endif // MERELOGGER_H

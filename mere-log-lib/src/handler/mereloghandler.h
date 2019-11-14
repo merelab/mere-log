@@ -4,11 +4,17 @@
 #include "../merelog.h"
 #include "../merelogconfig.h"
 
-class MereLogHandler
+#include <QObject>
+
+class MereLogHandler : public QObject
 {
+    Q_OBJECT
 public:
-//    virtual ~MereLogHandler();
-    MereLogHandler(MereLogConfig *config);
+    explicit MereLogHandler(MereLogConfig *config, QObject *parent = nullptr);
+
+signals:
+
+public slots:
     virtual bool handle(MereLog *log) = 0;
 
 protected:

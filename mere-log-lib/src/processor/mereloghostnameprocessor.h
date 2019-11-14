@@ -6,8 +6,6 @@
 class MereLogHostnameProcessor : public MereLogProcessor
 {
 public:
-    MereLogHostnameProcessor();
-
     static QString Field;
     QString field() const override;
 

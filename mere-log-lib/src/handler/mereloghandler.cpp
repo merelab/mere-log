@@ -1,7 +1,8 @@
 #include "mereloghandler.h"
 
-MereLogHandler::MereLogHandler(MereLogConfig *config)
-    : m_config(config)
+MereLogHandler::MereLogHandler(MereLogConfig *config, QObject *parent)
+    : QObject(parent),
+      m_config(config)
 {
 
 }

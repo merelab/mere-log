@@ -6,8 +6,9 @@
 
 class MERE_LOG_LIBSPEC MereDefaultLogger : public MereLogger
 {
+    Q_OBJECT
 public:
-    explicit MereDefaultLogger(MereLogConfig *config);
+    explicit MereDefaultLogger(MereLogConfig *config, QObject *parent = nullptr);
 
     bool emergency(const QString &message);
     bool alert(const QString &message);
@@ -17,11 +18,6 @@ public:
     bool notice(const QString &message);
     bool info(const QString &message);
     bool debug(const QString &message);
-
-protected:
-    bool log(MereLog *log);
-
-private:
 };
 
 #endif // MEREDEFAULTLOGGER_H

@@ -1,7 +1,8 @@
 #include "merelogseverityfilter.h"
 
 MereLogSeverityFilter::MereLogSeverityFilter(MereLogConfig *config)
-    : MereLogFilter(config), m_config(config)
+    : MereLogFilter(config),
+      m_config(config)
 {
 
 }

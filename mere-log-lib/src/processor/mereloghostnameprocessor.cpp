@@ -3,11 +3,6 @@
 #include <QSysInfo>
 
 QString MereLogHostnameProcessor::Field = "hostname";
-MereLogHostnameProcessor::MereLogHostnameProcessor()
-{
-
-}
-
 QString MereLogHostnameProcessor::field() const
 {
     return MereLogHostnameProcessor::Field;

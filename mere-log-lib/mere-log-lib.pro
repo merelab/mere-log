@@ -16,15 +16,16 @@ DEFINES += QT_DEPRECATED_WARNINGS MERE_LOG_LIB
 
 SOURCES += \
     src/filter/merelogseverityfilter.cpp \
+    src/format/merelogsyslogformatter.cpp \
     src/handler/merelogdefaulthandler.cpp \
     src/handler/merelogfilehandler.cpp \
     src/handler/mereloghandler.cpp \
     src/handler/merelogsysloghandler.cpp \
     src/meredefaultlogger.cpp \
-    src/merefilelogger.cpp \
     src/merelog.cpp \
     src/merelogconfig.cpp \
-    src/merelogcontext.cpp \
+    src/merelogcooker.cpp \
+    src/merelogdispatcher.cpp \
     src/merelogfactory.cpp \
     src/filter/merelogfilter.cpp \
     src/filter/merelogdefaultfilter.cpp \
@@ -35,21 +36,22 @@ SOURCES += \
     src/processor/mereloghostnameprocessor.cpp \
     src/processor/merelogprocessor.cpp \
     src/processor/merelogdefaultprocessor.cpp \
-    src/mereloglevel.cpp
+    src/processor/merelogusernameprocessor.cpp
 
 HEADERS += \
     src/filter/merelogseverityfilter.h \
+    src/format/merelogsyslogformatter.h \
     src/handler/merelogdefaulthandler.h \
     src/handler/merelogfilehandler.h \
     src/handler/mereloghandler.h \
     src/handler/merelogsysloghandler.h \
     src/meredefaultlogger.h \
-    src/merefilelogger.h \
     src/merelog.h \
     src/merelogconfig.h \
-    src/merelogcontext.h \
     src/filter/merelogdefaultfilter.h \
     src/format/merelogdefaultformatter.h \
+    src/merelogcooker.h \
+    src/merelogdispatcher.h \
     src/merelogfactory.h \
     src/filter/merelogfilter.h \
     src/format/merelogformatter.h \
@@ -59,7 +61,7 @@ HEADERS += \
     src/processor/mereloghostnameprocessor.h \
     src/processor/merelogprocessor.h \
     src/processor/merelogdefaultprocessor.h \
-    src/mereloglevel.h
+    src/processor/merelogusernameprocessor.h
 
 DESTDIR = $$PWD/../lib
 
