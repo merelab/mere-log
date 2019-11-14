@@ -36,6 +36,7 @@ SOURCES += \
     src/processor/mereloghostnameprocessor.cpp \
     src/processor/merelogprocessor.cpp \
     src/processor/merelogdefaultprocessor.cpp \
+    src/processor/merelogprocessprocessor.cpp \
     src/processor/merelogusernameprocessor.cpp
 
 HEADERS += \
@@ -61,6 +62,7 @@ HEADERS += \
     src/processor/mereloghostnameprocessor.h \
     src/processor/merelogprocessor.h \
     src/processor/merelogdefaultprocessor.h \
+    src/processor/merelogprocessprocessor.h \
     src/processor/merelogusernameprocessor.h
 
 DESTDIR = $$PWD/../lib
