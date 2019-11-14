@@ -12,20 +12,52 @@ bool MereLogSyslogHandler::handle(MereLog *log)
 {
     qDebug() << "Yes, please dump to the syslog!" << log->get("hostname");
 
-    QString format = "${uuid} ${severity} ${timestamp} ${hostname} ${application} ${message}";
+    int what = 0;
+    switch (log->what())
+    {
+        case MereLog::Emergency:
+            what = LOG_EMERG;
+            break;
+
+        case MereLog::Alert:
+            what = LOG_ALERT;
+            break;
+
+        case MereLog::Critical:
+            what = LOG_CRIT;
+            break;
+
+        case MereLog::Error:
+            what = LOG_ERR;
+            break;
+
+        case MereLog::Warning:
+            what = LOG_WARNING;
+            break;
+
+        case MereLog::Notice:
+            what = LOG_NOTICE;
+            break;
+
+        case MereLog::Informational:
+            what = LOG_INFO;
+            break;
+
+        case MereLog::Debug:
+            what = LOG_DEBUG;
+            break;
+    }
+
 
     MereLogSyslogFormatter fomatter(m_config);
 
-    qDebug() << "1..." << format;
-    qDebug() << "2..." << fomatter.format(log);
-    qDebug() << "CCCThread:" << QThread::currentThreadId();
+    QString format = fomatter.format(log);
 
-    setlogmask (LOG_UPTO (LOG_DEBUG));
+//    setlogmask (LOG_UPTO (LOG_DEBUG));
 
-    openlog ("mere-about", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
+    openlog("mere-log", (LOG_CONS|LOG_PERROR), LOG_DAEMON);
 
-//    syslog (LOG_NOTICE, "Program started by User %d", "iklash");
-    syslog (LOG_DEBUG, "A tree falls in a forest");
+    syslog(what, "%s", format.toStdString().data());
 
     closelog ();
 

@@ -25,7 +25,7 @@ private:
     MereLogConfig *m_config;
 
     QThread *m_thread;
-    QList<MereLogHandler *> m_handlers;
+//    QList<MereLogHandler *> m_handlers;
 };
 
 #endif // MERELOGDISPATCHER_H

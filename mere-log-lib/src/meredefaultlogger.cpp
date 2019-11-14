@@ -4,6 +4,7 @@
 #include "processor/merelogdefaultprocessor.h"
 #include "processor/mereloghostnameprocessor.h"
 #include "processor/merelogusernameprocessor.h"
+#include "processor/merelogprocessprocessor.h"
 #include "processor/merelogapplicationprocessor.h"
 
 MereDefaultLogger::MereDefaultLogger(MereLogConfig *config, QObject *parent)
@@ -17,6 +18,9 @@ MereDefaultLogger::MereDefaultLogger(MereLogConfig *config, QObject *parent)
 
     MereLogProcessor *appProcessor = new MereLogApplicationProcessor();
     config->addProcessor(appProcessor);
+
+    MereLogProcessor *processProcessor = new MereLogProcessProcessor();
+    config->addProcessor(processProcessor);
 }
 
 bool MereDefaultLogger::emergency(const QString &message)

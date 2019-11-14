@@ -5,7 +5,8 @@
 
 MereLogDispatcher::~MereLogDispatcher()
 {
-
+    m_thread->quit();
+    m_thread->wait();
 }
 
 MereLogDispatcher::MereLogDispatcher(MereLogConfig *config, QObject *parent)
@@ -17,18 +18,12 @@ MereLogDispatcher::MereLogDispatcher(MereLogConfig *config, QObject *parent)
     handler->moveToThread(m_thread);
 
     connect(this, SIGNAL(handle(MereLog *)), handler, SLOT(handle(MereLog *)));
-    connect(m_thread, &QThread::finished, handler, &QObject::deleteLater);
-
-    m_handlers.append(handler);
+    connect(m_thread, SIGNAL(finished()), handler, SLOT(deleteLater()));
 
     m_thread->start();
 }
 
 bool MereLogDispatcher::dispatch(MereLog *log)
 {
-    qDebug() << "Dispatcher thread:" << this->thread();
-
-    qDebug() << "Going to send it off";
-    this->handle(log);
-    return true;
+    return this->handle(log);
 }

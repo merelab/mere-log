@@ -1,4 +1,5 @@
 #include "merelogger.h"
+#include "merelogcooker.h"
 
 MereLogger::~MereLogger()
 {
@@ -9,18 +10,19 @@ MereLogger::~MereLogger()
 MereLogger::MereLogger(MereLogConfig *config, QObject *parent)
     : QObject(parent),
       m_config(config),
-      m_thread(new QThread(this)),
-      m_cooker(new MereLogCooker(config))
+      m_thread(new QThread(this))
 {
     qRegisterMetaType<MereLog::Severity>("MereLog::Severity");
 
-    m_cooker->moveToThread(m_thread);
+    MereLogCooker *cooker = new MereLogCooker(config);
 
-    connect(this, SIGNAL(log(const QString &)), m_cooker, SLOT(log(const QString &)));
-    connect(this, SIGNAL(log(MereLog::Severity, const QString &)), m_cooker, SLOT(log(MereLog::Severity, const QString &)));
-    connect(this, SIGNAL(log(MereLog *)), m_cooker, SLOT(log(MereLog *)));
+    cooker->moveToThread(m_thread);
 
-    connect(m_thread, &QThread::finished, m_cooker, &QObject::deleteLater);
+    connect(this, SIGNAL(log(const QString &)), cooker, SLOT(log(const QString &)));
+    connect(this, SIGNAL(log(MereLog::Severity, const QString &)), cooker, SLOT(log(MereLog::Severity, const QString &)));
+    connect(this, SIGNAL(log(MereLog *)), cooker, SLOT(log(MereLog *)));
+
+    connect(m_thread, SIGNAL(finished()), cooker, SLOT(deleteLater()));
 
     m_thread->start();
 }

@@ -3,7 +3,6 @@
 
 #include "merelog.h"
 #include "merelogconfig.h"
-#include "merelogcooker.h"
 #include "merelog.h"
 
 #include <QThread>
@@ -37,7 +36,6 @@ private:
     MereLogConfig *m_config;
 
     QThread *m_thread;
-    MereLogCooker *m_cooker;
 };
 
 #endif // MERELOGGER_H

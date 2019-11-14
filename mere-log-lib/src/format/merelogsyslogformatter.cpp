@@ -3,7 +3,7 @@
 MereLogSyslogFormatter::MereLogSyslogFormatter(MereLogConfig *config)
     : MereLogFormatter(config)
 {
-    m_format = "${uuid} ${severity} ${timestamp} ${hostname} ${application} ${message}";
+    m_format = "${uuid} ${what} ${when} ${hostname} ${username} ${application} ${note} ${process-id} ${process-name} ${process-path}";
 }
 
 QString MereLogSyslogFormatter::format(MereLog *log)
@@ -11,7 +11,7 @@ QString MereLogSyslogFormatter::format(MereLog *log)
     QString format = m_format;
 
     QRegExp rx;
-    rx.setPattern("(\\$\\{([a-zA-Z1-9]+)\\})+");
+    rx.setPattern("(\\$\\{([a-zA-Z1-9-\\.]+)\\})+");
 
     while(rx.indexIn(format) != -1)
     {

@@ -1,6 +1,14 @@
 #include "merelogcooker.h"
 
-#include <QThread>
+MereLogCooker::~MereLogCooker()
+{
+    if (m_dispatcher)
+    {
+        delete m_dispatcher;
+        m_dispatcher = nullptr;
+    }
+}
+
 MereLogCooker::MereLogCooker(MereLogConfig *config, QObject *parent)
     : QObject(parent),
       m_config(config),
@@ -29,7 +37,6 @@ bool MereLogCooker::log(MereLog *log)
 {
     qDebug() << "Working... " << log;
 
-//    MereLogConfig *config = this->config();
     m_config->setSeverities(MereLog::Severity::All);
 
     // pre-filters

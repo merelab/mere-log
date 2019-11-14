@@ -5,6 +5,7 @@
 #include "merelogconfig.h"
 #include "merelogdispatcher.h"
 
+#include <QThread>
 #include <QObject>
 #include <QDebug>
 
@@ -12,6 +13,7 @@ class MereLogCooker : public QObject
 {
     Q_OBJECT
 public:
+    ~MereLogCooker();
     explicit MereLogCooker(MereLogConfig *config, QObject *parent = nullptr);
 
 signals:
@@ -24,7 +26,6 @@ public slots:
 
 private:
     MereLogConfig *m_config;
-
     MereLogDispatcher *m_dispatcher;
 };
 
