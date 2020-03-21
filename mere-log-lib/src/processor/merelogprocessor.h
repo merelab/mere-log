@@ -6,6 +6,7 @@
 class MereLogProcessor
 {
 public:
+    static QString ProcessorCode;
     virtual QString field() const = 0;
     virtual bool process(MereLog *log) = 0;
 };

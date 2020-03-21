@@ -6,9 +6,12 @@ TARGET = mere-log
 TEMPLATE = app 
 
 SOURCES += \
-    main.cpp
+    src/main.cpp
 
 HEADERS += \
+
+OTHER_FILES += \
+    etc/log.conf
 
 #
 # Install

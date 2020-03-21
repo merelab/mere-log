@@ -16,4 +16,3 @@ bool MereLogHostnameProcessor::process(MereLog *log)
 
     return true;
 }
-\

@@ -15,6 +15,9 @@ public:
     ~MereLogDispatcher();
     explicit MereLogDispatcher(MereLogConfig *config, QObject *parent = nullptr);
 
+private:
+    void loadHandlers();
+
 signals:
     bool handle(MereLog *log);
 

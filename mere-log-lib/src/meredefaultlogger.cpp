@@ -10,17 +10,40 @@
 MereDefaultLogger::MereDefaultLogger(MereLogConfig *config, QObject *parent)
     : MereLogger(config, parent)
 {
-    MereLogProcessor *hostnameProcessor = new MereLogHostnameProcessor();
-    config->addProcessor(hostnameProcessor);
+    loadFilters();
+    loadProcessors();
+}
 
-    MereLogProcessor *userProcessor = new MereLogUsernameProcessor();
-    config->addProcessor(userProcessor);
+void MereDefaultLogger::loadFilters()
+{
+}
 
-    MereLogProcessor *appProcessor = new MereLogApplicationProcessor();
-    config->addProcessor(appProcessor);
+void MereDefaultLogger::loadProcessors()
+{
+    MereLogConfig *config = this->config();
+    if(config->isProcessorEnabled("hostname"))
+    {
+        MereLogProcessor *hostnameProcessor = new MereLogHostnameProcessor();
+        config->addProcessor(hostnameProcessor);
+    }
 
-    MereLogProcessor *processProcessor = new MereLogProcessProcessor();
-    config->addProcessor(processProcessor);
+    if(config->isProcessorEnabled("username"))
+    {
+        MereLogProcessor *userProcessor = new MereLogUsernameProcessor();
+        config->addProcessor(userProcessor);
+    }
+
+    if(config->isProcessorEnabled("application"))
+    {
+        MereLogProcessor *appProcessor = new MereLogApplicationProcessor();
+        config->addProcessor(appProcessor);
+    }
+
+    if(config->isProcessorEnabled("process"))
+    {
+        MereLogProcessor *processProcessor = new MereLogProcessProcessor();
+        config->addProcessor(processProcessor);
+    }
 }
 
 bool MereDefaultLogger::emergency(const QString &message)

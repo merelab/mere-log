@@ -18,6 +18,10 @@ public:
     bool notice(const QString &message);
     bool info(const QString &message);
     bool debug(const QString &message);
+
+private:
+    void loadFilters();
+    void loadProcessors();
 };
 
 #endif // MEREDEFAULTLOGGER_H

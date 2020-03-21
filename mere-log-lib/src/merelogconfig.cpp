@@ -9,6 +9,21 @@ MereLogConfig::MereLogConfig(QObject *parent)
 
 }
 
+bool MereLogConfig::isFilterEnabled(const QString &filter)
+{
+    return true;
+}
+
+bool MereLogConfig::isProcessorEnabled(const QString &processor)
+{
+    return true;
+}
+
+bool MereLogConfig::isHandlerEnabled(const QString &handler)
+{
+    return true;
+}
+
 int MereLogConfig::severities() const
 {
     return m_severities;

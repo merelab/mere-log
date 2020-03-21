@@ -1,5 +1,8 @@
 #include <QCoreApplication>
 
+#include "mere/log/merelogger.h"
+#include "mere/log/merelogfactory.h"
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setApplicationName("Mere Log");
@@ -7,8 +10,10 @@ int main(int argc, char *argv[])
 
     QCoreApplication app(argc, argv);
 
+
+    MereLogger *logger = MereLogFactory::logger();
+    logger->info("about me!");
+    logger->debug("about me! debug");
+
     return app.exec();
 }
-
-//qApp->installLogger(logger);
-//qApp->looger()->log();

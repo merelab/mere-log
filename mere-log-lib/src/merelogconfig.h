@@ -26,6 +26,9 @@ public:
     bool setFilters(QList<MereLogFilter *> filters);
     QList<MereLogFilter *> filters() const;
 
+    bool isFilterEnabled(const QString &filter);
+    bool isProcessorEnabled(const QString &processor);
+    bool isHandlerEnabled(const QString &handler);
 
 //signals:
 
