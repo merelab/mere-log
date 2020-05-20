@@ -13,6 +13,10 @@ HEADERS += \
 OTHER_FILES += \
     etc/log.conf
 
+LIBS        += -L /usr/local/lib
+INCLUDEPATH += -I /usr/local/include
+
+
 #
 # Install
 #

@@ -4,7 +4,7 @@ CONFIG += c++11
 CONFIG += shared
 
 TARGET = mere-log
-VERSION = 0.0.1b
+VERSION = 0.0.1
 TEMPLATE = lib
 
 DEFINES += LIB_CODE=\\\"log\\\"
