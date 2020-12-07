@@ -1,0 +1,3 @@
+[submodule "mere-log-lib"]
+	path = mere-log-lib
+	url = https://github.com/merelabs/mere-log-lib.git
