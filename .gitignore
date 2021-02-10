@@ -4,6 +4,4 @@
 .qmake.stash
 *.user
 Makefile
-lib/
-include/
 mere-log-lib/moc_*
